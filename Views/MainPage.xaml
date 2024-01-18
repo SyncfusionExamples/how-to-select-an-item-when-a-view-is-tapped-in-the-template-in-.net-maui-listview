@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ListViewMaui"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+             x:Class="ListViewMaui.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:BookInfoRepository/>
+    </ContentPage.BindingContext>
+    <syncfusion:SfListView x:Name="listView" AutoFitMode="Height" ItemSpacing="3"
+                         SelectedItem="{Binding SelectedItem}" BackgroundColor="#d3d3d3"
+                        SelectionChanging="listView_SelectionChanging"
+                         ItemsSource="{Binding BookInfoCollection}">
+        <syncfusion:SfListView.ItemTemplate>
+            <DataTemplate>
+                <Frame HasShadow="True" BackgroundColor="Transparent" >
+                    <Grid Padding="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Text="{Binding BookName}" CommandParameter="{Binding .}" Command="{Binding BindingContext.ItemTap, Source={x:Reference listView}}" FontAttributes="Bold" FontSize="19" />
+                        <Button Text="{Binding BookID}" Grid.Column="1" CommandParameter="{Binding .}" Command="{Binding BindingContext.ItemTap, Source={x:Reference listView}}" FontAttributes="Bold" FontSize="19" />
+                        <Button Text="{Binding SerialNumber}" Grid.Column="2" CommandParameter="{Binding .}" Command="{Binding BindingContext.ItemTap, Source={x:Reference listView}}" FontAttributes="Bold" FontSize="19" />
+                    </Grid>
+                </Frame>
+            </DataTemplate>
+        </syncfusion:SfListView.ItemTemplate>
+    </syncfusion:SfListView>
+    
+</ContentPage>
